@@ -14,27 +14,35 @@
 });
 
 </script>
-
+<link rel="stylesheet" href="C:\Users\iwanb\Desktop\School\Jaar_3\TNW\FullStackDev\moviedb-backend\Public\Uploads" />
 
 
 {#if movies}
-    <ul>
-        {#each movies as movie}
-            <li>
-                <img src="{movie.poster_path}" alt="help"> {movie.title} <button>{movie.genre}</button>
-            </li>
-        {/each}
-    </ul>
+  <ul>
+    {#each movies as movie}
+      <li>
+        {#if movie.poster_path !== null} <img src={`http://localhost:1337${movie.poster_path}`} alt="Movie Poster">{/if}
+ {movie.title} <button>{movie.genre}</button>
+      </li>
+    {/each}
+  </ul>
 {:else}
-    <p>Loading...</p>
+  <p>Loading...</p>
 {/if}
-
 
 <style>
     img{
         width: 300px;
         height: 500px;
         object-fit: cover;
+        border-radius: 3px;
+        transition: 0.3s;
+        margin-bottom: 20px;
+        cursor: pointer;
+    }
+    img:hover{
+        filter:drop-shadow(lightgrey 1px 1px 5px);
+        scale: 105%;
     }
     button{
         padding: 15px 20px;
@@ -45,6 +53,7 @@
         color: white;
         cursor: pointer;
         width: 300px;
+        margin-top: 10px;
     }
     button:hover{
         background-color: rgb(86, 86, 86);
@@ -63,8 +72,9 @@
         display: flex;
         flex-direction: column;
         gap: 5px;
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         color: white;
         text-align: center;
     }
+   
 </style>
